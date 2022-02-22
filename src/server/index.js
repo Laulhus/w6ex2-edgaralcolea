@@ -4,6 +4,7 @@ const chalk = require("chalk");
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const getItems = require("./controllers/getItems");
 const { notFoundError, generalError } = require("./middlewares/errors");
 
 const app = express();
@@ -22,6 +23,9 @@ const startServer = (port) =>
 
 app.use(morgan("dev"));
 app.use(helmet());
+// app.use(express.json());
+
+app.get("/items/list", getItems);
 
 app.use(notFoundError);
 app.use(generalError);
