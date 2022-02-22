@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const getItems = require("./controllers/getItems");
 const login = require("./controllers/login");
 const register = require("./controllers/register");
+const auth = require("./middlewares/auth");
 const { notFoundError, generalError } = require("./middlewares/errors");
 
 const app = express();
@@ -29,7 +30,7 @@ app.use(express.json());
 
 app.post("/users/register", register);
 app.post("/users/login", login);
-app.get("/items/list", getItems);
+app.get("/items/list", auth, getItems);
 
 app.use(notFoundError);
 app.use(generalError);

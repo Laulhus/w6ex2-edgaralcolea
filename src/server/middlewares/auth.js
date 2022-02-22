@@ -9,7 +9,8 @@ const auth = (req, res, next) => {
   } else {
     const token = headerAuth.replace("Bearer ", "");
     try {
-      jwt.verify(token, process.env.JWT_SECRET);
+      const userId = jwt.verify(token, process.env.JWT_SECRET);
+      req.body = userId;
       next();
     } catch (error) {
       error.code = 401;
@@ -18,3 +19,4 @@ const auth = (req, res, next) => {
     }
   }
 };
+module.exports = auth;
