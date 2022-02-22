@@ -5,6 +5,7 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const getItems = require("./controllers/getItems");
+const login = require("./controllers/login");
 const register = require("./controllers/register");
 const { notFoundError, generalError } = require("./middlewares/errors");
 
@@ -27,6 +28,7 @@ app.use(helmet());
 app.use(express.json());
 
 app.post("/users/register", register);
+app.post("/users/login", login);
 app.get("/items/list", getItems);
 
 app.use(notFoundError);

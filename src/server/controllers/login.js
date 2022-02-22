@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
     error.code = 404;
     next(error);
   } else {
-    const rightPassword = bcrypt.compare(password, user.password);
+    const rightPassword = await bcrypt.compare(password, user.password);
     if (!rightPassword) {
       const error = new Error("Wrong password");
       error.code = 400;
