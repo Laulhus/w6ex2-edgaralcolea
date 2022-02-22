@@ -1,4 +1,3 @@
-const debug = require("debug")("items:server:controllers");
 const bcrypt = require("bcrypt");
 const User = require("../../database/models/User");
 
